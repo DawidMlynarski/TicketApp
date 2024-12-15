@@ -14,27 +14,33 @@ namespace TicketApp
     {
         public string TaskTitle { get; private set; }
         public string TaskDescription { get; private set; }
+        public string SelectedPriority { get; set; } // Priorytet wybrany w TaskDialog
+
 
 
         public TaskDialog()
         {
             InitializeComponent();
+
         }
         // Metoda do ustawiania tytułu i opisu zadania w formularzu
-        public void SetTaskDetails(string title, string description)
+        public void SetTaskDetails(string title, string description, string priority)
         {
             TaskTitle = title;
             TaskDescription = description;
+            SelectedPriority = priority; // Ustawienie priorytetu
 
             // Ustawienie wartości w kontrolkach
             txtTitle.Text = title;
             txtDescription.Text = description;
+            cmbPriority.SelectedItem = priority;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             TaskTitle = txtTitle.Text; // Pobiera tytuł
             TaskDescription = txtDescription.Text; // Pobiera opis
+            SelectedPriority = cmbPriority.SelectedItem.ToString();
             this.DialogResult = DialogResult.OK; // Zwraca wynik dialogu
             this.Close();
         }

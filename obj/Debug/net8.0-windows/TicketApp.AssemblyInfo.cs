@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TicketApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da491088189000a21d131aead9fa158399edc3bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51f8f5e93296b6bde0f8b34e1d7c75d13911e5ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("TicketApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TicketApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

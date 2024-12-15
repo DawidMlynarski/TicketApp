@@ -38,22 +38,50 @@ namespace TicketApp
             taskLabel.Padding = new Padding(5);
             taskLabel.Margin = new Padding(5);
 
+            switch (task.Priority)
+            {
+                case "Low-SLA":
+                    taskLabel.ForeColor = Color.Gray;  // Niski priorytet - szary
+                    break;
+                case "Normal-SLA":
+                    taskLabel.ForeColor = Color.Black; // Normalny priorytet - czarny
+                    break;
+                case "High-SLA":
+                    taskLabel.ForeColor = Color.Red;   // Wysoki priorytet - czerwony
+                    break;
+            }
 
             // Dodaj zdarzenie klikniêcia do Label (np. aby wyœwietliæ szczegó³y)
             taskLabel.Click += (s, e) =>
             {
                 // Tworzymy nowe okno dialogowe i ustawiamy szczegó³y zadania
                 TaskDialog dialog = new TaskDialog();
-                dialog.SetTaskDetails(task.Title, task.Description);
+                dialog.SetTaskDetails(task.Title, task.Description, task.Priority);
                 var dialogResult = dialog.ShowDialog(); // Wyœwietlenie okna dialogowego
                                                         // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
                 if (dialogResult == DialogResult.OK)
                 {
                     task.Title = dialog.TaskTitle; // Zaktualizuj tytu³
                     task.Description = dialog.TaskDescription; // Zaktualizuj opis
+                    task.Priority = dialog.SelectedPriority; // Zaktualizuj priorytet
 
+
+                    // Zmieniamy kolor czcionki po edycji
+                    switch (task.Priority)
+                    {
+                        case "Low-SLA":
+                            taskLabel.ForeColor = Color.Gray;
+                            break;
+                        case "Normal-SLA":
+                            taskLabel.ForeColor = Color.Black;
+                            break;
+                        case "High-SLA":
+                            taskLabel.ForeColor = Color.Red;
+                            break;
+                    }
                     // Odœwie¿ tekst etykiety, aby wyœwietliæ zmienione dane
                     taskLabel.Text = $"{task.Id}: {task.Title}";
+
                 }
                 else if (dialogResult == DialogResult.Ignore)
                 {
@@ -78,9 +106,10 @@ namespace TicketApp
                 string taskId = GenerateTaskId(); // Wygeneruj ID
                 string title = taskDialog.TaskTitle; // Pobierz tytu³ od u¿ytkownika
                 string description = taskDialog.TaskDescription; // Pobierz opis od u¿ytkownika
+                string priority = taskDialog.SelectedPriority; // Pobierz priorytet z dialogu
 
                 // Stwórz nowy task
-                Task newTask = new Task(int.Parse(taskId), title, description);
+                Task newTask = new Task(int.Parse(taskId), title, description,priority);
                 taskList.Add(newTask); // Dodaj do listy
                 nextTaskId++; // Zwiêksz Id kolejnego taska
 

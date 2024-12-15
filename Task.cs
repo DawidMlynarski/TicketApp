@@ -11,12 +11,14 @@ namespace TicketApp
         public int Id { get; set; }          // Numer taska
         public string Title { get; set; }   // Tytuł taska
         public string Description { get; set; } // Szczegółowy opis taska
+        public string Priority { get; set; } //priorytet taska
 
-        public Task(int id, string title, string description)
+        public Task(int id, string title, string description, string priority)
         {
             Id = id;
             Title = title;
             Description = description;
+            Priority = priority;
         }
     }
 

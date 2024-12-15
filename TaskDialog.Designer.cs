@@ -35,6 +35,8 @@
             btnOK = new Button();
             btnCancel = new Button();
             btnClose = new Button();
+            cmbPriority = new ComboBox();
+            lblPriority = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -100,11 +102,32 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
+            // cmbPriority
+            // 
+            cmbPriority.FormattingEnabled = true;
+            cmbPriority.Items.AddRange(new object[] { "Normal-SLA", "High-SLA", "Low-SLA" });
+            cmbPriority.Location = new Point(12, 247);
+            cmbPriority.Name = "cmbPriority";
+            cmbPriority.Size = new Size(151, 28);
+            cmbPriority.TabIndex = 7;
+            cmbPriority.Text = "Normal-SLA";
+            // 
+            // lblPriority
+            // 
+            lblPriority.AutoSize = true;
+            lblPriority.Location = new Point(15, 220);
+            lblPriority.Name = "lblPriority";
+            lblPriority.Size = new Size(103, 20);
+            lblPriority.TabIndex = 8;
+            lblPriority.Text = "Priorytet taska";
+            // 
             // TaskDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblPriority);
+            Controls.Add(cmbPriority);
             Controls.Add(btnClose);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
@@ -127,5 +150,7 @@
         private Button btnOK;
         private Button btnCancel;
         private Button btnClose;
+        private ComboBox cmbPriority;
+        private Label lblPriority;
     }
 }
