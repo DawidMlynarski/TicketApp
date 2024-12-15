@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace TicketApp
 {
     public partial class Form1 : Form
@@ -23,6 +25,8 @@ namespace TicketApp
             return nextTaskId.ToString("D4"); // Format liczby na cztery cyfry (np. 0001)
         }
 
+        private List<Task> closedTasks = new List<Task>(); // Lista zamkniêtych tasków
+
         // Metoda do dodawania Taska do FlowLayoutPanel
         private void AddTaskToPanel(Task task)
         {
@@ -34,10 +38,29 @@ namespace TicketApp
             taskLabel.Padding = new Padding(5);
             taskLabel.Margin = new Padding(5);
 
+
             // Dodaj zdarzenie klikniêcia do Label (np. aby wyœwietliæ szczegó³y)
             taskLabel.Click += (s, e) =>
             {
-                MessageBox.Show($"Task {task.Id}\n\n{task.Description}", "Szczegó³y Taska");
+                // Tworzymy nowe okno dialogowe i ustawiamy szczegó³y zadania
+                TaskDialog dialog = new TaskDialog();
+                dialog.SetTaskDetails(task.Title, task.Description);
+                var dialogResult = dialog.ShowDialog(); // Wyœwietlenie okna dialogowego
+                                                        // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
+                if (dialogResult == DialogResult.OK)
+                {
+                    task.Title = dialog.TaskTitle; // Zaktualizuj tytu³
+                    task.Description = dialog.TaskDescription; // Zaktualizuj opis
+
+                    // Odœwie¿ tekst etykiety, aby wyœwietliæ zmienione dane
+                    taskLabel.Text = $"{task.Id}: {task.Title}";
+                }
+                else if (dialogResult == DialogResult.Ignore)
+                {
+                    // Zamkniêcie taska: przenosimy go do listy zamkniêtych
+                    closedTasks.Add(task); // Dodajemy do listy zamkniêtych
+                    flowLayoutPanel1.Controls.Remove(taskLabel);
+                }
             };
 
             // Dodanie etykiety do FlowLayoutPanel
@@ -45,17 +68,26 @@ namespace TicketApp
         }
         private void AddTaskButton_Click(object sender, EventArgs e)
         {
-            // Tworzenie nowego taska
-            string title = $"Task {nextTaskId}"; // Przyk³adowy tytu³
-            string description = $"Opis dla Taska {nextTaskId}"; // Przyk³adowy opis
-            Task newTask = new Task(nextTaskId, title, description);
+            // Utwórz nowe okno dialogowe
+            TaskDialog taskDialog = new TaskDialog();
+            var dialogResult = taskDialog.ShowDialog();
 
-            // Dodanie taska do listy
-            taskList.Add(newTask);
-            nextTaskId++; // Zwiêksz Id kolejnego taska
+            // Jeœli u¿ytkownik klikn¹³ OK, dodaj task
+            if (dialogResult == DialogResult.OK)
+            {
+                string taskId = GenerateTaskId(); // Wygeneruj ID
+                string title = taskDialog.TaskTitle; // Pobierz tytu³ od u¿ytkownika
+                string description = taskDialog.TaskDescription; // Pobierz opis od u¿ytkownika
 
-            // Wyœwietlenie taska w FlowLayoutPanel
-            AddTaskToPanel(newTask);
+                // Stwórz nowy task
+                Task newTask = new Task(int.Parse(taskId), title, description);
+                taskList.Add(newTask); // Dodaj do listy
+                nextTaskId++; // Zwiêksz Id kolejnego taska
+
+                // Wyœwietl task w FlowLayoutPanel
+                AddTaskToPanel(newTask);
+            }
         }
+
     }
 }

@@ -33,6 +33,7 @@ namespace TicketApp
             flowLayoutPanel1 = new FlowLayoutPanel();
             backgroundWorker1 = new BackgroundWorker();
             AddTaskButton = new Button();
+            lblTasksKind = new Label();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -58,17 +59,28 @@ namespace TicketApp
             AddTaskButton.UseVisualStyleBackColor = true;
             AddTaskButton.Click += AddTaskButton_Click;
             // 
+            // lblTasksKind
+            // 
+            lblTasksKind.AutoSize = true;
+            lblTasksKind.Location = new Point(205, 15);
+            lblTasksKind.Name = "lblTasksKind";
+            lblTasksKind.Size = new Size(99, 20);
+            lblTasksKind.TabIndex = 2;
+            lblTasksKind.Text = "Aktywne taski";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1366, 506);
+            Controls.Add(lblTasksKind);
             Controls.Add(AddTaskButton);
             Controls.Add(flowLayoutPanel1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -81,5 +93,6 @@ namespace TicketApp
         private FlowLayoutPanel flowLayoutPanel1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button AddTaskButton;
+        private Label lblTasksKind;
     }
 }

@@ -14,3 +14,5 @@ C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\refint\TicketApp.
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.pdb
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.genruntimeconfig.cache
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\ref\TicketApp.dll
+C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.TaskDialog.resources
+C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.sourcelink.json
