@@ -74,7 +74,7 @@ namespace TicketApp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1366, 506);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(lblTasksKind);
             Controls.Add(AddTaskButton);
             Controls.Add(flowLayoutPanel1);

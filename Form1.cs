@@ -56,7 +56,7 @@ namespace TicketApp
             {
                 // Tworzymy nowe okno dialogowe i ustawiamy szczegó³y zadania
                 TaskDialog dialog = new TaskDialog();
-                dialog.SetTaskDetails(task.Title, task.Description, task.Priority);
+                dialog.SetTaskDetails(task.Title, task.Description, task.Priority, task.AssignedConsultant, task.Entries);
                 var dialogResult = dialog.ShowDialog(); // Wyœwietlenie okna dialogowego
                                                         // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
                 if (dialogResult == DialogResult.OK)
@@ -64,7 +64,8 @@ namespace TicketApp
                     task.Title = dialog.TaskTitle; // Zaktualizuj tytu³
                     task.Description = dialog.TaskDescription; // Zaktualizuj opis
                     task.Priority = dialog.SelectedPriority; // Zaktualizuj priorytet
-
+                    task.AssignedConsultant = dialog.SelectedConsultant; // Zaktualizuj konsultanta 
+                    task.Entries = dialog.GetEntries();
 
                     // Zmieniamy kolor czcionki po edycji
                     switch (task.Priority)
@@ -94,6 +95,8 @@ namespace TicketApp
             // Dodanie etykiety do FlowLayoutPanel
             flowLayoutPanel1.Controls.Add(taskLabel);
         }
+
+        // DODAWANIE TASKA
         private void AddTaskButton_Click(object sender, EventArgs e)
         {
             // Utwórz nowe okno dialogowe
@@ -107,9 +110,10 @@ namespace TicketApp
                 string title = taskDialog.TaskTitle; // Pobierz tytu³ od u¿ytkownika
                 string description = taskDialog.TaskDescription; // Pobierz opis od u¿ytkownika
                 string priority = taskDialog.SelectedPriority; // Pobierz priorytet z dialogu
+                string consultant = taskDialog.SelectedConsultant; // Pobierz wybranego konsultanta
 
                 // Stwórz nowy task
-                Task newTask = new Task(int.Parse(taskId), title, description,priority);
+                Task newTask = new Task(int.Parse(taskId), title, description,priority, consultant);
                 taskList.Add(newTask); // Dodaj do listy
                 nextTaskId++; // Zwiêksz Id kolejnego taska
 

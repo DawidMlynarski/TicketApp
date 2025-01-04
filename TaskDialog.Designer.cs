@@ -37,6 +37,10 @@
             btnClose = new Button();
             cmbPriority = new ComboBox();
             lblPriority = new Label();
+            cmbConsultant = new ComboBox();
+            lblConsultant = new Label();
+            btnAddEntry = new Button();
+            rtbEntries = new RichTextBox();
             SuspendLayout();
             // 
             // lblTitle
@@ -74,7 +78,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(37, 401);
+            btnOK.Location = new Point(398, 247);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(94, 29);
             btnOK.TabIndex = 4;
@@ -84,7 +88,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(162, 401);
+            btnCancel.Location = new Point(521, 247);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 5;
@@ -94,7 +98,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(673, 401);
+            btnClose.Location = new Point(636, 247);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(115, 29);
             btnClose.TabIndex = 6;
@@ -121,11 +125,53 @@
             lblPriority.TabIndex = 8;
             lblPriority.Text = "Priorytet taska";
             // 
+            // cmbConsultant
+            // 
+            cmbConsultant.FormattingEnabled = true;
+            cmbConsultant.Items.AddRange(new object[] { "Dawid Młynarski", "Artur Karwatka" });
+            cmbConsultant.Location = new Point(212, 247);
+            cmbConsultant.Name = "cmbConsultant";
+            cmbConsultant.Size = new Size(151, 28);
+            cmbConsultant.TabIndex = 9;
+            cmbConsultant.Text = "Dawid Młynarski";
+            // 
+            // lblConsultant
+            // 
+            lblConsultant.AutoSize = true;
+            lblConsultant.Location = new Point(217, 218);
+            lblConsultant.Name = "lblConsultant";
+            lblConsultant.Size = new Size(79, 20);
+            lblConsultant.TabIndex = 10;
+            lblConsultant.Text = "Konsultant";
+            lblConsultant.Click += label1_Click;
+            // 
+            // btnAddEntry
+            // 
+            btnAddEntry.Location = new Point(12, 316);
+            btnAddEntry.Name = "btnAddEntry";
+            btnAddEntry.Size = new Size(94, 29);
+            btnAddEntry.TabIndex = 12;
+            btnAddEntry.Text = "Dodaj wpis";
+            btnAddEntry.UseVisualStyleBackColor = true;
+            btnAddEntry.Click += btnAddEntry_Click;
+            // 
+            // rtbEntries
+            // 
+            rtbEntries.Location = new Point(12, 373);
+            rtbEntries.Name = "rtbEntries";
+            rtbEntries.Size = new Size(776, 622);
+            rtbEntries.TabIndex = 11;
+            rtbEntries.Text = "";
+            // 
             // TaskDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1902, 1033);
+            Controls.Add(btnAddEntry);
+            Controls.Add(rtbEntries);
+            Controls.Add(lblConsultant);
+            Controls.Add(cmbConsultant);
             Controls.Add(lblPriority);
             Controls.Add(cmbPriority);
             Controls.Add(btnClose);
@@ -152,5 +198,9 @@
         private Button btnClose;
         private ComboBox cmbPriority;
         private Label lblPriority;
+        private ComboBox cmbConsultant;
+        private Label lblConsultant;
+        private Button btnAddEntry;
+        private RichTextBox rtbEntries;
     }
 }

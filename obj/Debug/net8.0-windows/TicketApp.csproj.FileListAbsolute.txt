@@ -16,3 +16,4 @@ C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.genrunt
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\ref\TicketApp.dll
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.TaskDialog.resources
 C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.sourcelink.json
+C:\Users\dwdml\source\repos\TicketApp\obj\Debug\net8.0-windows\TicketApp.EntryDialog.resources
