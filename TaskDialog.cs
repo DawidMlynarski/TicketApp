@@ -16,9 +16,10 @@ namespace TicketApp
         public string TaskTitle { get; private set; }
         public string TaskDescription { get; private set; }
         public string SelectedPriority { get; set; } // Priorytet wybrany w TaskDialog
-
         public string SelectedConsultant { get; set; }
         private List<string> entries = new List<string>(); // Lista wpisów
+        public bool IsClosed { get; private set; } // Właściwość do sprawdzenia statusu
+
 
 
         public TaskDialog()
@@ -27,12 +28,13 @@ namespace TicketApp
 
         }
         // Metoda do ustawiania tytułu i opisu zadania w formularzu
-        public void SetTaskDetails(string title, string description, string priority, string consultant, List<string> taskEntries = null)
+        public void SetTaskDetails(string title, string description, string priority, string consultant, bool isClosed, List<string> taskEntries = null)
         {
             TaskTitle = title;
             TaskDescription = description;
             SelectedPriority = priority; // Ustawienie priorytetu
             SelectedConsultant = consultant;
+            IsClosed = isClosed;
 
             // Ustawienie wartości w kontrolkach
             txtTitle.Text = title;
@@ -40,9 +42,15 @@ namespace TicketApp
             cmbPriority.SelectedItem = priority;
             cmbConsultant.SelectedItem = consultant;
 
+            // Ustawienie statusu taska
+            lblStatus.Text = IsClosed ? "Status: Task zamknięty" : "Status: Task aktywny";
+            lblStatus.ForeColor = IsClosed ? Color.Red : Color.Green; // Kolor dla statusu
+
             // Załaduj wpisy, jeśli istnieją
             entries = taskEntries ?? new List<string>();
             UpdateEntriesDisplay(); // Odśwież RichTextBox
+                                    
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -78,7 +86,10 @@ namespace TicketApp
             EntryDialog entryDialog = new EntryDialog();
             if (entryDialog.ShowDialog() == DialogResult.OK)
             {
-                string newEntry = $"{DateTime.Now}: {entryDialog.EntryText}"; // Dodaj datę do wpisu
+                string selectedConsultant = cmbConsultant.SelectedItem?.ToString() ?? "Nieznany konsultant";
+
+                // Tworzenie wpisu z datą, konsultantem i treścią wpisu
+                string newEntry = $"{DateTime.Now}: {selectedConsultant} - {entryDialog.EntryText}";
                 entries.Insert(0, newEntry); // Dodajemy wpis na górę listy (najnowszy)
 
                 // Odświeżenie RichTextBox

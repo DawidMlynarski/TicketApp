@@ -41,6 +41,7 @@
             lblConsultant = new Label();
             btnAddEntry = new Button();
             rtbEntries = new RichTextBox();
+            lblStatus = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -163,11 +164,23 @@
             rtbEntries.TabIndex = 11;
             rtbEntries.Text = "";
             // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            lblStatus.ForeColor = Color.Green;
+            lblStatus.Location = new Point(173, 317);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(190, 28);
+            lblStatus.TabIndex = 13;
+            lblStatus.Text = "Status: Task Aktywny";
+            // 
             // TaskDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(lblStatus);
             Controls.Add(btnAddEntry);
             Controls.Add(rtbEntries);
             Controls.Add(lblConsultant);
@@ -202,5 +215,6 @@
         private Label lblConsultant;
         private Button btnAddEntry;
         private RichTextBox rtbEntries;
+        private Label lblStatus;
     }
 }

@@ -34,6 +34,9 @@ namespace TicketApp
             backgroundWorker1 = new BackgroundWorker();
             AddTaskButton = new Button();
             lblTasksKind = new Label();
+            lblSearchID = new Label();
+            txtSearchId = new TextBox();
+            btnSearchId = new Button();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -70,11 +73,40 @@ namespace TicketApp
             lblTasksKind.TabIndex = 2;
             lblTasksKind.Text = "Aktywne taski";
             // 
+            // lblSearchID
+            // 
+            lblSearchID.AutoSize = true;
+            lblSearchID.Location = new Point(52, 132);
+            lblSearchID.Name = "lblSearchID";
+            lblSearchID.Size = new Size(89, 20);
+            lblSearchID.TabIndex = 3;
+            lblSearchID.Text = "Wyszukaj ID";
+            // 
+            // txtSearchId
+            // 
+            txtSearchId.Location = new Point(38, 155);
+            txtSearchId.Name = "txtSearchId";
+            txtSearchId.Size = new Size(125, 27);
+            txtSearchId.TabIndex = 4;
+            // 
+            // btnSearchId
+            // 
+            btnSearchId.Location = new Point(52, 188);
+            btnSearchId.Name = "btnSearchId";
+            btnSearchId.Size = new Size(94, 29);
+            btnSearchId.TabIndex = 5;
+            btnSearchId.Text = "Szukaj";
+            btnSearchId.UseVisualStyleBackColor = true;
+            btnSearchId.Click += btnSearchId_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(btnSearchId);
+            Controls.Add(txtSearchId);
+            Controls.Add(lblSearchID);
             Controls.Add(lblTasksKind);
             Controls.Add(AddTaskButton);
             Controls.Add(flowLayoutPanel1);
@@ -96,5 +128,8 @@ namespace TicketApp
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button AddTaskButton;
         private Label lblTasksKind;
+        private Label lblSearchID;
+        private TextBox txtSearchId;
+        private Button btnSearchId;
     }
 }

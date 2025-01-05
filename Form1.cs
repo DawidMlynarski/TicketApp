@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace TicketApp
@@ -56,7 +57,8 @@ namespace TicketApp
             {
                 // Tworzymy nowe okno dialogowe i ustawiamy szczegó³y zadania
                 TaskDialog dialog = new TaskDialog();
-                dialog.SetTaskDetails(task.Title, task.Description, task.Priority, task.AssignedConsultant, task.Entries);
+                bool isClosed = closedTasks.Contains(task);
+                dialog.SetTaskDetails(task.Title, task.Description, task.Priority, task.AssignedConsultant, isClosed, task.Entries);
                 var dialogResult = dialog.ShowDialog(); // Wyœwietlenie okna dialogowego
                                                         // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
                 if (dialogResult == DialogResult.OK)
@@ -88,7 +90,14 @@ namespace TicketApp
                 {
                     // Zamkniêcie taska: przenosimy go do listy zamkniêtych
                     closedTasks.Add(task); // Dodajemy do listy zamkniêtych
+                    taskList.Remove(task);
                     flowLayoutPanel1.Controls.Remove(taskLabel);
+                    // Pobierz aktualnie wybranego konsultanta
+                    string selectedConsultant = task.AssignedConsultant ?? "Nieznany konsultant";
+
+                    // Dodaj wpis o zamkniêciu taska
+                    string closureEntry = $"{DateTime.Now}: {selectedConsultant} - ZAMKNIÊCIE TASKA";
+                    task.Entries.Insert(0, closureEntry); // Dodaj wpis na górê listy
                 }
             };
 
@@ -113,7 +122,7 @@ namespace TicketApp
                 string consultant = taskDialog.SelectedConsultant; // Pobierz wybranego konsultanta
 
                 // Stwórz nowy task
-                Task newTask = new Task(int.Parse(taskId), title, description,priority, consultant);
+                Task newTask = new Task(int.Parse(taskId), title, description, priority, consultant);
                 taskList.Add(newTask); // Dodaj do listy
                 nextTaskId++; // Zwiêksz Id kolejnego taska
 
@@ -122,5 +131,41 @@ namespace TicketApp
             }
         }
 
+        private void btnSearchId_Click(object sender, EventArgs e)
+        {
+            // Pobierz wpisany ID z TextBoxa
+            if (int.TryParse(txtSearchId.Text, out int searchId)) // SprawdŸ, czy ID jest liczb¹
+            {
+                // Szukaj taska w liœcie aktywnych
+                Task task = taskList.FirstOrDefault(t => t.Id == searchId);
+
+                // Jeœli nie znaleziono w aktywnych, szukaj w zamkniêtych
+                bool isClosed = false; // Flaga dla statusu
+                if (task == null)
+                {
+                    task = closedTasks.FirstOrDefault(t => t.Id == searchId);
+                    isClosed = (task != null); // Oznacz task jako zamkniêty, jeœli znaleziony w zamkniêtych
+                    Debug.WriteLine(isClosed);
+                }
+
+                // Jeœli znaleziono taska
+                if (task != null)
+                {
+                    TaskDialog dialog = new TaskDialog();
+                    dialog.SetTaskDetails(task.Title, task.Description, task.Priority,task.AssignedConsultant, isClosed, task.Entries); // Przeka¿ dane i status
+                    dialog.ShowDialog(); // Otwórz okno dialogowe
+                }
+                else
+                {
+                    // Komunikat, gdy task nie istnieje
+                    MessageBox.Show("Nie znaleziono taska o podanym ID.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Komunikat o b³êdnym formacie ID
+                MessageBox.Show("Proszê podaæ poprawne ID (liczbê).", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+    }
     }
 }
