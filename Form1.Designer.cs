@@ -37,6 +37,14 @@ namespace TicketApp
             lblSearchID = new Label();
             txtSearchId = new TextBox();
             btnSearchId = new Button();
+            lblSearchContent = new Label();
+            txtSearchContent = new TextBox();
+            btnSearchContent = new Button();
+            btnHome = new Button();
+            cmbPriorityFilter = new ComboBox();
+            cmbConsultantFilter = new ComboBox();
+            cmbStatusFilter = new ComboBox();
+            btnFilter = new Button();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -99,11 +107,92 @@ namespace TicketApp
             btnSearchId.UseVisualStyleBackColor = true;
             btnSearchId.Click += btnSearchId_Click;
             // 
+            // lblSearchContent
+            // 
+            lblSearchContent.AutoSize = true;
+            lblSearchContent.Location = new Point(39, 263);
+            lblSearchContent.Name = "lblSearchContent";
+            lblSearchContent.Size = new Size(107, 20);
+            lblSearchContent.TabIndex = 6;
+            lblSearchContent.Text = "Wyszukaj frazę";
+            // 
+            // txtSearchContent
+            // 
+            txtSearchContent.Location = new Point(38, 286);
+            txtSearchContent.Name = "txtSearchContent";
+            txtSearchContent.Size = new Size(125, 27);
+            txtSearchContent.TabIndex = 7;
+            // 
+            // btnSearchContent
+            // 
+            btnSearchContent.Location = new Point(52, 319);
+            btnSearchContent.Name = "btnSearchContent";
+            btnSearchContent.Size = new Size(94, 29);
+            btnSearchContent.TabIndex = 8;
+            btnSearchContent.Text = "Szukaj";
+            btnSearchContent.UseVisualStyleBackColor = true;
+            btnSearchContent.Click += btnSearchContent_Click;
+            // 
+            // btnHome
+            // 
+            btnHome.Location = new Point(52, 6);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(94, 29);
+            btnHome.TabIndex = 9;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnHome_Click;
+            // 
+            // cmbPriorityFilter
+            // 
+            cmbPriorityFilter.FormattingEnabled = true;
+            cmbPriorityFilter.Items.AddRange(new object[] { "High-SLA", "Low-SLA", "Normal-SLA" });
+            cmbPriorityFilter.Location = new Point(374, 12);
+            cmbPriorityFilter.Name = "cmbPriorityFilter";
+            cmbPriorityFilter.Size = new Size(151, 28);
+            cmbPriorityFilter.TabIndex = 10;
+            // 
+            // cmbConsultantFilter
+            // 
+            cmbConsultantFilter.FormattingEnabled = true;
+            cmbConsultantFilter.Items.AddRange(new object[] { "Dawid Młynarski", "Artur Karwatka" });
+            cmbConsultantFilter.Location = new Point(531, 12);
+            cmbConsultantFilter.Name = "cmbConsultantFilter";
+            cmbConsultantFilter.Size = new Size(151, 28);
+            cmbConsultantFilter.TabIndex = 11;
+            // 
+            // cmbStatusFilter
+            // 
+            cmbStatusFilter.FormattingEnabled = true;
+            cmbStatusFilter.Items.AddRange(new object[] { "Aktywne", "Zamknięte" });
+            cmbStatusFilter.Location = new Point(688, 12);
+            cmbStatusFilter.Name = "cmbStatusFilter";
+            cmbStatusFilter.Size = new Size(151, 28);
+            cmbStatusFilter.TabIndex = 12;
+            // 
+            // btnFilter
+            // 
+            btnFilter.Location = new Point(845, 12);
+            btnFilter.Name = "btnFilter";
+            btnFilter.Size = new Size(94, 29);
+            btnFilter.TabIndex = 13;
+            btnFilter.Text = "Filtruj";
+            btnFilter.UseVisualStyleBackColor = true;
+            btnFilter.Click += btnFilter_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(btnFilter);
+            Controls.Add(cmbStatusFilter);
+            Controls.Add(cmbConsultantFilter);
+            Controls.Add(cmbPriorityFilter);
+            Controls.Add(btnHome);
+            Controls.Add(btnSearchContent);
+            Controls.Add(txtSearchContent);
+            Controls.Add(lblSearchContent);
             Controls.Add(btnSearchId);
             Controls.Add(txtSearchId);
             Controls.Add(lblSearchID);
@@ -131,5 +220,13 @@ namespace TicketApp
         private Label lblSearchID;
         private TextBox txtSearchId;
         private Button btnSearchId;
+        private Label lblSearchContent;
+        private TextBox txtSearchContent;
+        private Button btnSearchContent;
+        private Button btnHome;
+        private ComboBox cmbPriorityFilter;
+        private ComboBox cmbConsultantFilter;
+        private ComboBox cmbStatusFilter;
+        private Button btnFilter;
     }
 }

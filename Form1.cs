@@ -19,7 +19,18 @@ namespace TicketApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Przyk³adowe taski
+            taskList.Add(new Task(1, "Naprawa serwera", "Serwer nie odpowiada od godziny 12:00", "High-SLA", "Artur Karwatka"));
+            taskList.Add(new Task(2, "Aktualizacja oprogramowania", "Aktualizacja bazy danych do najnowszej wersji", "Normal-SLA", "Dawid M³ynarski"));
+            taskList.Add(new Task(3, "Konfiguracja VPN", "Ustawienia VPN dla nowego pracownika", "Low-SLA", "Artur Karwatka"));
+            taskList.Add(new Task(4, "Analiza logów", "Przeanalizowanie logów b³êdów z ostatniego tygodnia", "Normal-SLA", "Dawid M³ynarski"));
+            taskList.Add(new Task(5, "Wymiana sprzêtu", "Wymiana starego routera na nowy model", "High-SLA", "Artur Karwatka"));
+            taskList.Add(new Task(6, "Testy zabezpieczeñ", "Testy penetracyjne nowego systemu", "Normal-SLA", "Dawid M³ynarski"));
+            taskList.Add(new Task(7, "Przygotowanie raportu", "Sporz¹dzenie raportu z audytu bezpieczeñstwa", "Low-SLA", "Artur Karwatka"));
+            taskList.Add(new Task(8, "Utrzymanie sieci", "Przegl¹d okresowy infrastruktury sieciowej", "Normal-SLA", "Dawid M³ynarski"));
 
+            // Wyœwietl aktywne taski
+            DisplayTasks(taskList);
         }
         private string GenerateTaskId()
         {
@@ -152,7 +163,7 @@ namespace TicketApp
                 if (task != null)
                 {
                     TaskDialog dialog = new TaskDialog();
-                    dialog.SetTaskDetails(task.Title, task.Description, task.Priority,task.AssignedConsultant, isClosed, task.Entries); // Przeka¿ dane i status
+                    dialog.SetTaskDetails(task.Title, task.Description, task.Priority, task.AssignedConsultant, isClosed, task.Entries); // Przeka¿ dane i status
                     dialog.ShowDialog(); // Otwórz okno dialogowe
                 }
                 else
@@ -166,6 +177,91 @@ namespace TicketApp
                 // Komunikat o b³êdnym formacie ID
                 MessageBox.Show("Proszê podaæ poprawne ID (liczbê).", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-    }
+        }
+
+        private void btnSearchContent_Click(object sender, EventArgs e)
+        {
+            string searchQuery = txtSearchContent.Text.ToLower(); // Pobierz tekst i zamieñ na ma³e litery
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                MessageBox.Show("WprowadŸ frazê do wyszukania.", "B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Wyszukiwanie w aktywnych taskach
+            var activeResults = taskList
+                .Where(t => t.Title.ToLower().Contains(searchQuery) || t.Description.ToLower().Contains(searchQuery))
+                .ToList();
+
+            // Wyszukiwanie w zamkniêtych taskach
+            var closedResults = closedTasks
+                .Where(t => t.Title.ToLower().Contains(searchQuery) || t.Description.ToLower().Contains(searchQuery))
+                .ToList();
+
+            // £¹czenie wyników
+            var allResults = activeResults.Concat(closedResults).ToList();
+
+            // Sprawdzenie czy znaleziono wyniki
+            if (allResults.Any())
+            {
+                // Zmieñ tytu³ labela na "wyniki wyszukiwania"
+                lblTasksKind.Text = "Wyniki wyszukiwania";
+
+                // Wyczyœæ panel i wyœwietl znalezione taski
+                flowLayoutPanel1.Controls.Clear();
+                foreach (var task in allResults)
+                {
+                    AddTaskToPanel(task); // Ponowne dodanie tasków do panelu
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono tasków pasuj¹cych do podanej frazy.", "Brak wyników", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            // Zmieñ tytu³ labela z powrotem na "Aktywne taski"
+            lblTasksKind.Text = "Aktywne taski";
+
+            // Wyczyœæ panel i ponownie wyœwietl tylko aktywne taski
+            flowLayoutPanel1.Controls.Clear();
+            foreach (var task in taskList)
+            {
+                AddTaskToPanel(task);
+            }
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            // Pobierz wybrane wartoœci z list rozwijanych
+            string selectedPriority = cmbPriorityFilter.SelectedItem?.ToString();
+            string selectedConsultant = cmbConsultantFilter.SelectedItem?.ToString();
+            string selectedStatus = cmbStatusFilter.SelectedItem?.ToString();
+
+            // Filtruj taski
+            var filteredTasks = taskList
+                .Where(task =>
+                    (string.IsNullOrEmpty(selectedPriority) || task.Priority == selectedPriority) &&
+                    (string.IsNullOrEmpty(selectedConsultant) || task.AssignedConsultant == selectedConsultant) &&
+                    (string.IsNullOrEmpty(selectedStatus) ||
+                        (selectedStatus == "Aktywne" && !closedTasks.Contains(task)) ||
+                        (selectedStatus == "Zamkniête" && closedTasks.Contains(task))))
+                .ToList();
+
+            // Wyœwietl przefiltrowane taski
+            DisplayTasks(filteredTasks);
+        }
+
+        // Metoda do odœwie¿enia wyœwietlania tasków
+        private void DisplayTasks(List<Task> tasksToDisplay)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            foreach (var task in tasksToDisplay)
+            {
+                AddTaskToPanel(task);
+            }
+        }
     }
 }
