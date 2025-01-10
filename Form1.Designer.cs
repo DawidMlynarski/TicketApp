@@ -45,6 +45,8 @@ namespace TicketApp
             cmbConsultantFilter = new ComboBox();
             cmbStatusFilter = new ComboBox();
             btnFilter = new Button();
+            cmbUsers = new ComboBox();
+            lblUser = new Label();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -180,11 +182,33 @@ namespace TicketApp
             btnFilter.UseVisualStyleBackColor = true;
             btnFilter.Click += btnFilter_Click;
             // 
+            // cmbUsers
+            // 
+            cmbUsers.FormattingEnabled = true;
+            cmbUsers.Items.AddRange(new object[] { "Dawid Młynarski", "Artur Karwatka" });
+            cmbUsers.Location = new Point(1739, 72);
+            cmbUsers.Name = "cmbUsers";
+            cmbUsers.Size = new Size(151, 28);
+            cmbUsers.TabIndex = 14;
+            cmbUsers.Text = "Dawid Młynarski";
+            cmbUsers.SelectedIndexChanged += cmbUsers_SelectedIndexChanged;
+            // 
+            // lblUser
+            // 
+            lblUser.AutoSize = true;
+            lblUser.Location = new Point(1739, 49);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(128, 20);
+            lblUser.TabIndex = 15;
+            lblUser.Text = "Zalogowano jako:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(lblUser);
+            Controls.Add(cmbUsers);
             Controls.Add(btnFilter);
             Controls.Add(cmbStatusFilter);
             Controls.Add(cmbConsultantFilter);
@@ -228,5 +252,7 @@ namespace TicketApp
         private ComboBox cmbConsultantFilter;
         private ComboBox cmbStatusFilter;
         private Button btnFilter;
+        private ComboBox cmbUsers;
+        private Label lblUser;
     }
 }

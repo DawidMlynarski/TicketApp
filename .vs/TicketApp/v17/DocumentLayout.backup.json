@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\taskdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:taskdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\taskdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:taskdialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|c:\\users\\dwdml\\source\\repos\\ticketapp\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AA3568A-8F10-45BD-8FEE-9D92BA810355}|TicketApp.csproj|solutionrelative:user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +42,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "TaskDialog.cs",
+              "DocumentMoniker": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\TaskDialog.cs",
+              "RelativeDocumentMoniker": "TaskDialog.cs",
+              "ToolTip": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\TaskDialog.cs",
+              "RelativeToolTip": "TaskDialog.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAgwH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T16:34:08.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TaskDialog.cs [Projekt]",
+              "DocumentMoniker": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\TaskDialog.cs",
+              "RelativeDocumentMoniker": "TaskDialog.cs",
+              "ToolTip": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\TaskDialog.cs [Projekt]",
+              "RelativeToolTip": "TaskDialog.cs [Projekt]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T16:34:04.993Z",
+              "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\Form1.cs*",
               "RelativeToolTip": "Form1.cs*",
-              "ViewState": "AgIAANMAAAAAAAAAAAArwOAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAuwEwAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T13:47:14.255Z",
+              "WhenOpened": "2025-01-10T16:30:56.647Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Projekt]",
               "DocumentMoniker": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\Form1.cs [Projekt]*",
               "RelativeToolTip": "Form1.cs [Projekt]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T13:09:47.172Z",
+              "WhenOpened": "2025-01-10T16:30:51.62Z",
               "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\User.cs",
+              "RelativeDocumentMoniker": "User.cs",
+              "ToolTip": "C:\\Users\\dwdml\\source\\repos\\TicketApp\\User.cs",
+              "RelativeToolTip": "User.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T16:30:19.642Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -7,6 +7,8 @@ namespace TicketApp
     {
         private List<Task> taskList = new List<Task>(); // Lista przechowuj¹ca taski
         private int nextTaskId = 1; // Identyfikator kolejnego taska
+        private User currentUser;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,6 +21,7 @@ namespace TicketApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            currentUser = new User("Dawid M³ynarski", "Administrator");
             // Przyk³adowe taski
             taskList.Add(new Task(1, "Naprawa serwera", "Serwer nie odpowiada od godziny 12:00", "High-SLA", "Artur Karwatka"));
             taskList.Add(new Task(2, "Aktualizacja oprogramowania", "Aktualizacja bazy danych do najnowszej wersji", "Normal-SLA", "Dawid M³ynarski"));
@@ -66,17 +69,25 @@ namespace TicketApp
             // Dodaj zdarzenie klikniêcia do Label (np. aby wyœwietliæ szczegó³y)
             taskLabel.Click += (s, e) =>
             {
+                
                 // Tworzymy nowe okno dialogowe i ustawiamy szczegó³y zadania
                 TaskDialog dialog = new TaskDialog();
                 bool isClosed = closedTasks.Contains(task);
                 dialog.SetTaskDetails(task.Title, task.Description, task.Priority, task.AssignedConsultant, isClosed, task.Entries);
+                dialog.SetRolePermissions(currentUser.Role);
                 var dialogResult = dialog.ShowDialog(); // Wyœwietlenie okna dialogowego
-                                                        // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
+
+                
+
+                // Je¿eli u¿ytkownik zatwierdzi³ zmiany, aktualizujemy task
                 if (dialogResult == DialogResult.OK)
                 {
-                    task.Title = dialog.TaskTitle; // Zaktualizuj tytu³
-                    task.Description = dialog.TaskDescription; // Zaktualizuj opis
-                    task.Priority = dialog.SelectedPriority; // Zaktualizuj priorytet
+                    if (currentUser.Role == "Administrator")
+                    {
+                        task.Title = dialog.TaskTitle; // Zaktualizuj tytu³
+                        task.Description = dialog.TaskDescription; // Zaktualizuj opis
+                        task.Priority = dialog.SelectedPriority; // Zaktualizuj priorytet
+                    }
                     task.AssignedConsultant = dialog.SelectedConsultant; // Zaktualizuj konsultanta 
                     task.Entries = dialog.GetEntries();
 
@@ -262,6 +273,19 @@ namespace TicketApp
             {
                 AddTaskToPanel(task);
             }
+        }
+
+        private void cmbUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedUserName = cmbUsers.SelectedItem.ToString();
+
+            if (selectedUserName == "Dawid M³ynarski")
+                currentUser = new User("Dawid M³ynarski", "Administrator");
+            else if (selectedUserName == "Artur Karwatka")
+                currentUser = new User("Artur Karwatka", "Konsultant");
+
+            MessageBox.Show($"Zalogowano jako {currentUser.Name} ({currentUser.Role})", "Informacja",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

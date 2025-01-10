@@ -108,5 +108,20 @@ namespace TicketApp
         {
             return entries; // Zwróć wpisy do głównego formularza
         }
+        public void SetRolePermissions(string role)
+        {
+            if (role == "Konsultant")
+            {
+                txtTitle.Enabled = false; // Tytuł wyszarzony
+                cmbPriority.Enabled = false; // SLA wyszarzone
+                btnClose.Enabled = false; // Zamknięcie taska wyłączone
+            }
+            else if (role == "Administrator")
+            {
+                txtTitle.Enabled = true;
+                cmbPriority.Enabled = true;
+                btnClose.Enabled = true;
+            }
+        }
     }
 }
